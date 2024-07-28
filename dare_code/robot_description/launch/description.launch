@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Open the model file -->
+  <arg name="Canary_xacro" default="$(find cartographer_ros)/robot_description/canary.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(arg Canary_xacro)'"/>
+
+  <!-- Add the transformations -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+</launch>

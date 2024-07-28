@@ -1,0 +1,16 @@
+This has the forward directories for all dare files:
+
+configuration_files:
+recursively copy here -> ~/cartographer_ws/src/cartographer_ros/cartographer_ros/configuration_files/
+
+launch:
+recursievly copy here -> ~/cartographer_ws/src/cartographer_ros/cartographer_ros/launch
+
+robot_description:
+copy the entire folder here -> ~/cartographer_ws/src/cartographer_ros/cartographer_ros/
+
+rosbag:
+copy entire folder here -> ~/cartographer_ws/src/cartographer_ros/cartographer_ros/
+
+scripts:
+recursively copy here -> ~/cartographer_ws/src/cartographer_ros/cartographer_ros/scripts/

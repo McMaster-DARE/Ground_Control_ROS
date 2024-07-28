@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Canary">
+
+  <!-- Color Macros -->
+  <material name="red">
+    <color rgba="1.0 0 0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.3 0.57 1. 1."/>
+  </material>
+
+  <!-- Base Properties -->
+  <xacro:property name="body_length" value="0.2" />
+  <xacro:property name="body_width" value="0.1" />
+  <xacro:property name="body_height" value="0.05" />
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <!--<collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.04 0.04"/>
+      </geometry>
+    </collision>-->
+    <!--<inertial>
+       <mass value="0.3"/>
+       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+     </inertial>-->
+  </link>
+
+  <!-- Front Left Wing Link -->
+  <link name="front_left_wing">
+    <visual>
+      <origin xyz="0.16 0.13 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_to_front_left_wing" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_wing"/>
+    <origin xyz="0.16 0.13 0"/>
+  </joint>
+
+
+  <!-- Front Right Wing Link -->
+  <link name="front_right_wing">
+    <visual>
+      <origin xyz="0.16 -0.13 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_to_front_right_wing" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_wing"/>
+    <origin xyz="0.16 -0.13 0"/>
+  </joint>
+
+  <!-- Back Left Wing Link -->
+  <link name="back_left_wing">
+    <visual>
+      <origin xyz="-0.09 0.13 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_to_back_left_wing" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_left_wing"/>
+    <origin xyz="-0.09 0.13 0"/>
+  </joint>
+
+
+  <!-- Back Right Wing Link -->
+  <link name="back_right_wing">
+    <visual>
+      <origin xyz="-0.09 -0.13 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.03" radius="0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_to_back_right_wing" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_right_wing"/>
+    <origin xyz="-0.09 -0.13 0"/>
+  </joint>
+
+  <!-- IMU Link -->
+  <link name="imu">
+  </link>
+  <joint name="base_to_imu" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <!-- Lidar above on base_link-->
+  <link name="lidar">
+  </link>
+  <joint name="base_to_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0 0 0.06"/>
+  </joint>
+  
+</robot>

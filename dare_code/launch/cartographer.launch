@@ -1,0 +1,35 @@
+<launch>
+  <!-- Adjust the ROS_PACKAGE_PATH to include both the DARE_ROS and cartographer_ros packages -->
+  <!-- <env name="ROS_PACKAGE_PATH" value="/home/marwan/DARE_ROS/src:/home/marwan/cartographer_ws/src:${ROS_PACKAGE_PATH}"/> -->
+
+  <!-- Use the simulation time -->
+  <param name="/use_sim_time" value="true" />
+  
+  <!-- URDF -->
+  <include file="$(find cartographer_ros)/robot_description/launch/description.launch"/> 
+
+  <!-- Start the Cartographer node to begin SLAM along with LUA config file -->
+  <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node"
+        args="-configuration_directory $(find cartographer_ros)/configuration_files -configuration_basename canary.lua"
+        output="screen">
+
+    <remap from="echoes" to="horizontal_laser_2d" />
+  </node>
+
+  <!-- Run the IMU listener script -->
+  <!-- <node name="imu_listener" pkg="cartographer_ros" type="imu_listener.py" output="screen" /> -->
+
+  <!-- Bag file to use with Cartographer -->
+  <arg name="bag_filename" default="$(find cartographer_ros)/rosbag/lidar_scan_data.bag"/>
+
+  <!-- Play the specified bag file for lidar/imu scan data -->
+  <node name="play_lidar_bag" pkg="rosbag" type="play" args="--clock -l $(arg bag_filename)" />
+ 
+  <arg name="imu_bag_filename" default="$(find cartographer_ros)/rosbag/imu_scan_data.bag"/>
+  <node name="play_imu_bag" pkg="rosbag" type="play" args=" --clock -l $(arg imu_bag_filename)" />
+
+  <!-- Start RViz for visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find cartographer_ros)/config/lidar.rviz"/>
+
+</launch>
