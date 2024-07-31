@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCE_DIR="$HOME/Ground_Control_ROS/dare_code/"
-DEST_DIR="$HOME/Ground_Control_ROS/cart_ws/src/cartographer_ros/cartographer_ros/"
+DEST_DIR="$HOME/Ground_Control_ROS/catkin_ws/src/cartographer_ros/cartographer_ros/"
 
 
 rsync -av --progress "${SOURCE_DIR}configuration_files/" "${DEST_DIR}configuration_files/"
