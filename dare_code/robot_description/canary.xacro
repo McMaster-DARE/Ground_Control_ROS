@@ -11,9 +11,18 @@
   </material>
 
   <!-- Base Properties -->
-  <xacro:property name="body_length" value="0.2" />
-  <xacro:property name="body_width" value="0.1" />
-  <xacro:property name="body_height" value="0.05" />
+  <xacro:property name="body_length" value="0.8" />
+  <xacro:property name="body_width" value="0.3" />
+  <xacro:property name="body_height" value="0.5" />
+
+  <link name="world">
+  </link>
+
+  <joint name="world_joint" type="fixed">
+      <origin xyz="0 0 0.5" rpy="0 0 0" />
+      <parent link="world" />
+      <child link="base_link" />
+  </joint>
 
   <!-- Base Link -->
   <link name="base_link">
@@ -24,20 +33,10 @@
       </geometry>
       <material name="blue"/>
     </visual>
-    <!--<collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size="0.4 0.04 0.04"/>
-      </geometry>
-    </collision>-->
-    <!--<inertial>
-       <mass value="0.3"/>
-       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
-     </inertial>-->
   </link>
 
   <!-- Front Left Wing Link -->
-  <link name="front_left_wing">
+  <!--<link name="front_left_wing">
     <visual>
       <origin xyz="0.16 0.13 0" rpy="0 0 0" />
       <geometry>
@@ -49,11 +48,11 @@
     <parent link="base_link"/>
     <child link="front_left_wing"/>
     <origin xyz="0.16 0.13 0"/>
-  </joint>
+  </joint>-->
 
 
   <!-- Front Right Wing Link -->
-  <link name="front_right_wing">
+  <!-- <link name="front_right_wing">
     <visual>
       <origin xyz="0.16 -0.13 0" rpy="0 0 0" />
       <geometry>
@@ -65,10 +64,10 @@
     <parent link="base_link"/>
     <child link="front_right_wing"/>
     <origin xyz="0.16 -0.13 0"/>
-  </joint>
+  </joint> -->
 
   <!-- Back Left Wing Link -->
-  <link name="back_left_wing">
+  <!-- <link name="back_left_wing">
     <visual>
       <origin xyz="-0.09 0.13 0" rpy="0 0 0" />
       <geometry>
@@ -80,11 +79,11 @@
     <parent link="base_link"/>
     <child link="back_left_wing"/>
     <origin xyz="-0.09 0.13 0"/>
-  </joint>
+  </joint> -->
 
 
   <!-- Back Right Wing Link -->
-  <link name="back_right_wing">
+  <!-- <link name="back_right_wing">
     <visual>
       <origin xyz="-0.09 -0.13 0" rpy="0 0 0" />
       <geometry>
@@ -96,23 +95,23 @@
     <parent link="base_link"/>
     <child link="back_right_wing"/>
     <origin xyz="-0.09 -0.13 0"/>
-  </joint>
+  </joint> -->
 
   <!-- IMU Link -->
-  <link name="imu">
+  <link name="imu_link">
   </link>
-  <joint name="base_to_imu" type="fixed">
+  <joint name="imu_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="imu"/>
+    <child link="imu_link"/>
     <origin xyz="0 0 0"/>
   </joint>
 
   <!-- Lidar above on base_link-->
-  <link name="lidar">
+  <link name="lidar_link">
   </link>
-  <joint name="base_to_lidar" type="fixed">
+  <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="lidar"/>
+    <child link="lidar_link"/>
     <origin xyz="0 0 0.06"/>
   </joint>
   
