@@ -19,5 +19,9 @@ Contains the essential packages for post-processing of the bagfile data after th
 `./domake.sh`
 `./docopy.sh`
 
-6. To test if everything worked, run the following, an rviz window should appear:
+6. source the devel_isolated/setup.bash script within your basrc file
+`nano ~/.bashrc` -> scroll all the way down and copy the command below :)
+`source ~/Ground_Controls_ROS/catkin_ws/devel_isolated/setup.bash`
+   
+8. To test if everything worked, run the following, an rviz window should appear:
 `roslaunch cartographer_ros cartographer.launch`
