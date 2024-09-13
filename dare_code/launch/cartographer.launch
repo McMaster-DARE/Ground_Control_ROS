@@ -30,6 +30,6 @@
 
   <!-- Start RViz for visualization -->
   <node name="rviz" pkg="rviz" type="rviz" required="true"
-        args="-d $(find cartographer_ros)/config/lidar.rviz"/>
+        args="-d $(find cartographer_ros)/configuration_files/lidar.rviz"/>
 
 </launch>
